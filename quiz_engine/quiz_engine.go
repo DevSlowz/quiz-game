@@ -57,6 +57,11 @@ func closeFile(f *os.File) {
 	}
 }
 
+func displayScore(correct, incorrect int) {
+	total := correct + incorrect
+	fmt.Printf("Final Score: %d/%d\n", correct, total)
+}
+
 // func sortTest([][]string) map[string]string {
 
 // }
@@ -65,11 +70,13 @@ func StartQuiz(m map[string]string) {
 	correct := 0
 	incorrect := 0
 	userInput := ""
+	count := 1
 	// Loop though questions
+
 	for key, value := range m {
-		count := 1
+
 		// Display question
-		fmt.Printf("Problem %d: %s\n = ", count, key)
+		fmt.Printf("Problem %d: %s = ", count, key)
 		count++
 
 		// get user input
@@ -82,4 +89,9 @@ func StartQuiz(m map[string]string) {
 		}
 
 	}
+	displayScore(correct, incorrect)
+}
+
+func Engine() {
+
 }
