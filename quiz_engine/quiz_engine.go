@@ -5,9 +5,14 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"strings"
 )
 
 func Read() {
+
+	// Create map to hold test questions and answer
+	testQuestions := make(map[string]string)
+
 	// Open specified file
 	file, err := os.Open("./problems.csv")
 
@@ -30,8 +35,14 @@ func Read() {
 	}
 
 	for _, record := range records {
-		fmt.Println(record)
+		parts := strings.Split(record[0], ",")
+		question := strings.TrimSpace(parts[0])
+		answer := strings.TrimSpace(parts[1])
+		// fmt.Printf("The part is : %s\n", parts)
+		// fmt.Printf("The question is %s the answer is %s\n", question, answer)
+		testQuestions[question] = answer
 	}
+
 }
 
 // Close file and verify it closed correctly
@@ -43,3 +54,7 @@ func closeFile(f *os.File) {
 		fmt.Fprintf(os.Stderr, "error: %v\n", err)
 	}
 }
+
+// func sortTest([][]string) map[string]string {
+
+// }
