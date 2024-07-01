@@ -8,13 +8,16 @@ import (
 	"strings"
 )
 
-func Read() map[string]string {
+func Read(fileName string) map[string]string {
 
 	// Create map to hold test questions and answer
 	testQuestions := make(map[string]string)
 
+	if fileName == "" {
+		fileName = "problems.csv"
+	}
 	// Open specified file
-	file, err := os.Open("./problems.csv")
+	file, err := os.Open(fileName)
 
 	// if the file is not found or cant open log details
 	if err != nil {
@@ -90,8 +93,4 @@ func StartQuiz(m map[string]string) {
 
 	}
 	displayScore(correct, incorrect)
-}
-
-func Engine() {
-
 }
